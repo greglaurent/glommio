@@ -1856,11 +1856,11 @@ impl<T> Future for Task<T> {
 /// }
 /// # });
 /// ```
-/// ["Task"]: crate::Task;
-/// ["Cell"]: std::cell::Cell;
-/// ["RefCell"]: std:cell::RefCell;
-/// ["std::mem::forget"]: std::mem::forget;
-/// ["ManuallyDrop"]: std::mem::ManuallyDrop;
+/// [`Task`]: crate::Task;
+/// [`Cell`]: std::cell::Cell;
+/// [`RefCell`]: std:cell::RefCell;
+/// [`std::mem::forget`]: std::mem::forget;
+/// [`ManuallyDrop`]: std::mem::ManuallyDrop;
 #[must_use = "scoped tasks get canceled when dropped, use a standard Task and `.detach()` to run \
               them in the background"]
 #[derive(Debug)]
