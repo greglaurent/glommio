@@ -69,7 +69,7 @@ impl IntWriter {
 
                 println!(
                     "{}: Wrote {} ({}%), {:.0} int/s, scheduler shares: {} , {:.2} % CPU",
-                    Paint::blue(format!("{}s", elapsed.as_secs())),
+                    Paint::blue(&format!("{}s", elapsed.as_secs())),
                     self.count.get(),
                     Paint::new(format!("{:.0}", ratio)).bold(),
                     intratio,
@@ -191,12 +191,12 @@ fn main() {
             println!(
                 "Ok, now let's write {} integers with both the writer and the CPU hog having the \
                  same priority",
-                Paint::blue(to_write.to_string())
+                Paint::blue(&to_write.to_string())
             );
             let dur = static_writer(to_write, 1000, cpuhog_tq).await;
             println!(
                 "Finished writing in {}",
-                Paint::green(format!("{dur:#.0?}"))
+                Paint::green(&format!("{dur:#.0?}"))
             );
             println!(
                 "This was using {} shares, and short of reducing the priority of the CPU hog. {}",
@@ -206,12 +206,12 @@ fn main() {
             println!(
                 "With {} shares, this would have taken approximately {}",
                 Paint::green("100"),
-                Paint::green(format!("{:#.1?}", dur * 10))
+                Paint::green(&format!("{:#.1?}", dur * 10))
             );
             println!(
                 "With {} shares, this would have taken approximately {}. {}.",
                 Paint::green("1"),
-                Paint::green(format!("{:#.1?}", dur * 1000)),
+                Paint::green(&format!("{:#.1?}", dur * 1000)),
                 Paint::new("Can't go any slower than that!").bold()
             );
 
@@ -235,7 +235,7 @@ fn main() {
                 let dur = deadline.push_work(test).await.unwrap();
                 println!(
                     "Finished writing in {}",
-                    Paint::green(format!("{dur:#.2?}"))
+                    Paint::green(&format!("{dur:#.2?}"))
                 );
                 stop.set(true);
                 hog.await.unwrap();
