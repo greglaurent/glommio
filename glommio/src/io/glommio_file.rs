@@ -156,7 +156,7 @@ impl GlommioFile {
 
     pub(crate) fn identity(&self) -> Identity {
         (
-            (self.dev_major as u64) << 32 | self.dev_minor as u64,
+            ((self.dev_major as u64) << 32) | self.dev_minor as u64,
             self.inode,
         )
     }

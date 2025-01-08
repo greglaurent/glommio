@@ -515,7 +515,7 @@ impl DmaFile {
     /// As this is a DMA file, the OS will not be caching this file; however,
     /// there may be caches on the drive itself.
     pub async fn fdatasync(&self) -> Result<()> {
-        self.file.fdatasync().await.map_err(Into::into)
+        self.file.fdatasync().await
     }
 
     /// Returns the alignment required for I/O operations. Typical values will

@@ -508,7 +508,10 @@ impl<'a> SQE<'a> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 unsafe impl<'a> Send for SQE<'a> {}
+
+#[allow(clippy::needless_lifetimes)]
 unsafe impl<'a> Sync for SQE<'a> {}
 
 #[derive(Debug)]
@@ -699,6 +702,7 @@ impl<'ring> DerefMut for HardLinkedSQE<'ring> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'ring> Drop for HardLinkedSQE<'ring> {
     fn drop(&mut self) {
         if !self.is_final {
@@ -748,6 +752,7 @@ impl<'ring> DerefMut for SoftLinkedSQE<'ring> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'ring> Drop for SoftLinkedSQE<'ring> {
     fn drop(&mut self) {
         if !self.is_final {

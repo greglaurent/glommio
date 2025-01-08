@@ -116,5 +116,8 @@ impl fmt::Debug for CompletionQueue<'_> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 unsafe impl<'ring> Send for CompletionQueue<'ring> {}
+
+#[allow(clippy::needless_lifetimes)]
 unsafe impl<'ring> Sync for CompletionQueue<'ring> {}

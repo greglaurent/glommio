@@ -263,6 +263,7 @@ impl<'a, T> Waiter<'a, T> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Future for Waiter<'a, T> {
     type Output = LockResult<()>;
 
@@ -305,6 +306,7 @@ impl<'a, T> Future for Waiter<'a, T> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Drop for Waiter<'a, T> {
     fn drop(&mut self) {
         if self.node.link.is_linked() {
@@ -373,6 +375,7 @@ pub struct RwLockReadGuard<'a, T> {
     value_ref: Ref<'a, Option<T>>,
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Deref for RwLockReadGuard<'a, T> {
     type Target = T;
 
@@ -381,6 +384,7 @@ impl<'a, T> Deref for RwLockReadGuard<'a, T> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Drop for RwLockReadGuard<'a, T> {
     fn drop(&mut self) {
         let mut state = self.rw.state.borrow_mut();
@@ -409,6 +413,7 @@ pub struct RwLockWriteGuard<'a, T> {
     value_ref: RefMut<'a, Option<T>>,
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Deref for RwLockWriteGuard<'a, T> {
     type Target = T;
 
@@ -417,6 +422,7 @@ impl<'a, T> Deref for RwLockWriteGuard<'a, T> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> DerefMut for RwLockWriteGuard<'a, T> {
     fn deref_mut(&mut self) -> &mut Self::Target {
         let state = self.rw.state.borrow();
@@ -429,6 +435,7 @@ impl<'a, T> DerefMut for RwLockWriteGuard<'a, T> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Drop for RwLockWriteGuard<'a, T> {
     fn drop(&mut self) {
         let mut state = self.rw.state.borrow_mut();

@@ -1,8 +1,10 @@
+#![allow(non_camel_case_types)]
+
 use crate::sys::Statx;
 
 pub mod syscalls;
 
-pub const LIBURING_UDATA_TIMEOUT: libc::__u64 = libc::__u64::max_value();
+pub const LIBURING_UDATA_TIMEOUT: libc::__u64 = libc::__u64::MAX;
 
 // sqe opcode constants
 #[repr(C)]

@@ -151,6 +151,7 @@ impl<'a> Waiter<'a> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a> Drop for Waiter<'a> {
     fn drop(&mut self) {
         if self.node.link.is_linked() {
@@ -162,6 +163,7 @@ impl<'a> Drop for Waiter<'a> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a> Future for Waiter<'a> {
     type Output = Result<()>;
 
@@ -286,6 +288,7 @@ impl StaticPermit {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a> Drop for Permit<'a> {
     fn drop(&mut self) {
         process_wakes(self.sem, self.units);

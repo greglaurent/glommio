@@ -213,7 +213,10 @@ impl fmt::Debug for Registrar<'_> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 unsafe impl<'ring> Send for Registrar<'ring> {}
+
+#[allow(clippy::needless_lifetimes)]
 unsafe impl<'ring> Sync for Registrar<'ring> {}
 
 #[derive(Debug, Eq, PartialEq, Hash, Ord, PartialOrd, Clone, Copy)]

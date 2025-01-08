@@ -100,6 +100,7 @@ where
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T, F, R> Future for Waiter<'a, T, F>
 where
     F: FnMut() -> PollResult<R>,
@@ -187,6 +188,7 @@ fn remove_from_the_waiting_queue<T>(node: Pin<&mut WaiterNode>, state: &mut Stat
         .expect("Future has to be queue into the waiting queue");
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T, F> Drop for Waiter<'a, T, F> {
     fn drop(&mut self) {
         if self.node.link.is_linked() {
@@ -646,6 +648,7 @@ impl<'a, T> ChannelStream<'a, T> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Stream for ChannelStream<'a, T> {
     type Item = T;
 
@@ -685,6 +688,7 @@ impl<'a, T> Stream for ChannelStream<'a, T> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Drop for ChannelStream<'a, T> {
     fn drop(&mut self) {
         remove_from_the_waiting_queue(self.node.as_mut(), &mut self.channel.state.borrow_mut());

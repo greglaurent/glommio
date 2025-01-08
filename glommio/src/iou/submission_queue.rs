@@ -113,5 +113,8 @@ impl fmt::Debug for SubmissionQueue<'_> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 unsafe impl<'ring> Send for SubmissionQueue<'ring> {}
+
+#[allow(clippy::needless_lifetimes)]
 unsafe impl<'ring> Sync for SubmissionQueue<'ring> {}

@@ -671,6 +671,7 @@ impl UringQueueState {
     }
 }
 
+#[allow(dead_code)]
 pub(crate) trait UringCommon {
     fn submission_queue(&mut self) -> ReactorQueue;
     fn submit_sqes(&mut self) -> io::Result<usize>;
@@ -1677,7 +1678,7 @@ impl Reactor {
             &mut *self.ring_for_source(source),
             source,
             UringOpDescriptor::Nop,
-            &mut *self.source_map.borrow_mut(),
+            &mut self.source_map.borrow_mut(),
         );
     }
 

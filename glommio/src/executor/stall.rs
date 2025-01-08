@@ -263,6 +263,7 @@ impl<'detector> StallDetectorGuard<'detector> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'detector> Drop for StallDetectorGuard<'detector> {
     fn drop(&mut self) {
         let _ = self.detector.disarm();

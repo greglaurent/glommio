@@ -1330,6 +1330,7 @@ impl AsyncWrite for DmaStreamWriter {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a> AsyncWrite for &'a DmaStreamWriter {
     fn poll_write(
         self: Pin<&mut Self>,

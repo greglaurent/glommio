@@ -1856,17 +1856,17 @@ impl<T> Future for Task<T> {
 /// }
 /// # });
 /// ```
-
-/// [`Task`]: crate::Task
-/// [`Cell`]: std::cell::Cell
-/// [`RefCell`]: std::cell::RefCell
-/// [`std::mem::forget`]: std::mem::forget
-/// [`ManuallyDrop`]: std::mem::ManuallyDrop
+/// ["Task"]: crate::Task;
+/// ["Cell"]: std::cell::Cell;
+/// ["RefCell"]: std:cell::RefCell;
+/// ["std::mem::forget"]: std::mem::forget;
+/// ["ManuallyDrop"]: std::mem::ManuallyDrop;
 #[must_use = "scoped tasks get canceled when dropped, use a standard Task and `.detach()` to run \
               them in the background"]
 #[derive(Debug)]
 pub struct ScopedTask<'a, T>(multitask::Task<T>, PhantomData<&'a T>);
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> ScopedTask<'a, T> {
     /// Cancels the task and waits for it to stop running.
     ///
@@ -1903,6 +1903,7 @@ impl<'a, T> ScopedTask<'a, T> {
     }
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a, T> Future for ScopedTask<'a, T> {
     type Output = T;
 
@@ -3507,6 +3508,7 @@ mod test {
                 .zip(tq2_count.borrow().iter())
                 .map(|(x, y)| *y as f64 / *x as f64)
                 .collect();
+
             assert!(ratios[1] > ratios[0]);
             assert!(ratios[0] < 0.25);
             assert!(ratios[1] > 0.50);
